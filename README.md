@@ -32,8 +32,9 @@ It allows users to register, log in, track their daily food intake, calculate BM
 - IDE: Visual Studio Code
 - Python: 3.x
 - Browser: Google Chrome
+- 🧪 Future Enhancements
 
-### Steps to Run Locally:
+  ### Steps to Run Locally:
 
 ```bash
 # 1. Clone the repository
@@ -50,3 +51,30 @@ pip install -r requirements.txt
 
 # 4. Run the Flask server
 python app.py
+```
+
+  
+🌐 Cloud Deployment (Render / PythonAnywhere / Heroku)
+
+⚙️ CI/CD Pipeline (GitHub Actions + Deploy Hooks)
+
+🧠 ML-based Food Recommendations
+
+📈 User Nutrition Analytics Dashboard
+
+☁️ Cloud Database Integration
+
+✅ Unit Testing & Logging
+
+
+👨‍💻 Authors & Contributors
+Gautam Sanghvi
+
+
+
+
+
+
+
+
+

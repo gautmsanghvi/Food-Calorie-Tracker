@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.inner-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    background: #fff;
+    padding: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background: #f0f0f0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #0072ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0059c1;
+}
+
+a {
+    color: #0072ff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.flash-messages {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+}
+
+.flash {
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    margin-top: 10px;
+}
+
+.flash.success {
+    background: #28a745;
+}
+
+.flash.danger {
+    background: #dc3545;
+}
+
+.flash.info {
+    background: #17a2b8;
+}

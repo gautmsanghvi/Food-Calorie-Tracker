@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NutriSync - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container glass">
+        <h1>Welcome, {{ username }}</h1>
+        <p>Date: {{ date }}</p>
+
+        <h2>Add Food</h2>
+        <form method="POST" action="{{ url_for('index') }}">
+            <label for="food_name">Food Name:</label>
+            <select name="food_name" required>
+                {% for item in food_items %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="quantity">Quantity (grams):</label>
+            <input type="number" name="quantity" value="100" min="1" required>
+
+            <label for="date">Date:</label>
+            <input type="date" name="date" value="{{ date }}" required>
+
+            <button type="submit" name="submit_food">Add Food</button>
+        </form>
+
+        <h2>Today's Food Intake</h2>
+        <table>
+            <tr>
+                <th>Food Name</th>
+                <th>Protein (g)</th>
+                <th>Fat (g)</th>
+                <th>Carbs (g)</th>
+                <th>Calories</th>
+                <th>Quantity (g)</th>
+                <th>Action</th>
+            </tr>
+            {% for food in foods %}
+            <tr>
+                <td>{{ food[3] }}</td>
+                <td>{{ food[4]|round(2) }}</td>
+                <td>{{ food[5]|round(2) }}</td>
+                <td>{{ food[6]|round(2) }}</td>
+                <td>{{ food[7]|round(2) }}</td>
+                <td>{{ food[8] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete', food_id=food[0]) }}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>Total Intake</h3>
+        <p>Protein: {{ total_protein|round(2) }}g | Fat: {{ total_fat|round(2) }}g | Carbs: {{ total_carbs|round(2) }}g | Calories: {{ total_calories|round(2) }} kcal</p>
+
+        <h2>Calculate BMI</h2>
+        <form method="POST" action="{{ url_for('index') }}">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" name="weight" step="0.1" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" name="height" step="0.1" required>
+
+            <button type="submit">Calculate BMI</button>
+        </form>
+
+        {% if bmi_result %}
+        <div class="bmi-result">
+            <h3>Your BMI: {{ bmi_result }}</h3>
+            <p>Status: <strong>{{ bmi_status }}</strong></p>
+            <p>
+                {% if bmi_status == 'Underweight' %}
+                    🔹 Recommendation: Eat more nutritious food and aim for calorie surplus.
+                {% elif bmi_status == 'Normal' %}
+                    ✅ Recommendation: Great! Maintain your current routine.
+                {% elif bmi_status == 'Overweight' %}
+                    ⚠️ Recommendation: Consider reducing calorie intake and increase activity.
+                {% elif bmi_status == 'Obese' %}
+                    🚨 Recommendation: Focus on healthy eating and regular exercise.
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        <a href="{{ url_for('daily_food') }}">View All Food Logs</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>

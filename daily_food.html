@@ -1,0 +1,45 @@
+<!-- daily_food.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NutriSync - Food History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Full Food Intake History</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Food</th>
+                <th>Quantity (g)</th>
+                <th>Protein (g)</th>
+                <th>Fat (g)</th>
+                <th>Carbs (g)</th>
+                <th>Calories</th>
+            </tr>
+            {% for food in foods %}
+            <tr>
+                <td>{{ food[2] }}</td>
+                <td>{{ food[3] }}</td>
+                <td>{{ food[9] }}</td>
+                <td>{{ "%.2f"|format(food[4]) }}</td>
+                <td>{{ "%.2f"|format(food[5]) }}</td>
+                <td>{{ "%.2f"|format(food[6]) }}</td>
+                <td>{{ "%.2f"|format(food[7]) }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2"><strong>Total</strong></td>
+                <td>-</td>
+                <td><strong>{{ "%.2f"|format(total_protein) }}</strong></td>
+                <td><strong>{{ "%.2f"|format(total_fat) }}</strong></td>
+                <td><strong>{{ "%.2f"|format(total_carbs) }}</strong></td>
+                <td><strong>{{ "%.2f"|format(total_calories) }}</strong></td>
+            </tr>
+        </table>
+        <a href="{{ url_for('index') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

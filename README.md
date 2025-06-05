@@ -28,7 +28,7 @@ It allows users to register, log in, track their daily food intake, calculate BM
 ## 💻 Local Deployment (Current Status)
 
 ### Environment:
-- OS: Windows 10
+- OS: Windows 11
 - IDE: Visual Studio Code
 - Python: 3.x
 - Browser: Google Chrome
